@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETF
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     ticker_id INTEGER NOT NULL,
     instrument_id INTEGER NOT NULL,
+    instrument_ticker TEXT NOT NULL, 
     quantity REAL NOT NULL,
     estimated_payout REAL NOT NULL, -- This is the estimated payout for the position
     average_price REAL NOT NULL,

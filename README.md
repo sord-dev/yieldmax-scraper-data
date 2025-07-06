@@ -1,0 +1,1 @@
+# yieldmax-scraper-data

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS instrument ( -- This table stores instrument metadata
     FOREIGN KEY (ticker_id) REFERENCES ticker(id)
 );
 
-CREATE TABLE IF NOT EXISTS position_calculation ( -- This table stores user positions in ETFs, including estimated payout (calculated from current_price and ticker distribution_history)
+CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETFs, including estimated payout (calculated from current_price and ticker distribution_history)
     -- This table is used to track user positions in ETFs, including the quantity and average price
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     ticker_id INTEGER NOT NULL,

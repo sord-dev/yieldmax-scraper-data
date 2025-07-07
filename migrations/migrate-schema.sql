@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ticker ( -- This table stores ETF metadata (from the ETF webpage)
+CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     symbol TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,

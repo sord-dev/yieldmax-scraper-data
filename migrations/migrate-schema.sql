@@ -5,7 +5,19 @@ CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tic
     currency TEXT NOT NULL,
     value TEXT NOT NULL,
     time_updated TEXT NOT NULL, -- This is the time when the ticker was last updated
-    historical_data TEXT DEFAULT NULL -- This is the historical data for the ticker, stored as a JSON string
+);
+
+CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores historical data for tickers
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticker_id INTEGER NOT NULL, -- This is the ID of the ticker
+    symbol TEXT NOT NULL, -- This is the ticker symbol
+    date TEXT NOT NULL, -- This is the date of the historical data
+    open REAL NOT NULL, -- Opening price
+    high REAL NOT NULL, -- Highest price
+    low REAL NOT NULL, -- Lowest price
+    close REAL NOT NULL, -- Closing price
+    UNIQUE(symbol, date) -- Ensure no duplicate entries for the same symbol and date
+    ,FOREIGN KEY (ticker_id) REFERENCES ticker(id)
 );
 
 CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)

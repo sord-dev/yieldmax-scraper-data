@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETF
     instrument_ticker TEXT NOT NULL, 
     quantity REAL NOT NULL,
     estimated_payout REAL DEFAULT NULL, -- This is the estimated payout for the position
+    payout_updated_timestamp DATETIME DEFAULT NULL,
     average_price REAL NOT NULL,
     current_price REAL NOT NULL,
     FOREIGN KEY (ticker_id) REFERENCES ticker(id),

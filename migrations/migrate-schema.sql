@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS instrument ( -- This table stores instrument metadata
     isin TEXT NOT NULL,
     name TEXT NOT NULL,
     short_name TEXT NOT NULL,
-    currency TEXT NOT NULL,
-    FOREIGN KEY (ticker_id) REFERENCES ticker(id)
+    currency TEXT NOT NULL
+    ,FOREIGN KEY (ticker_id) REFERENCES ticker(id)
 );
 
 CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETFs, including estimated payout (calculated from current_price and ticker distribution_history)
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETF
     estimated_payout REAL DEFAULT NULL, -- This is the estimated payout for the position
     payout_updated_timestamp DATETIME DEFAULT NULL,
     average_price REAL NOT NULL,
-    current_price REAL NOT NULL,
-    FOREIGN KEY (ticker_id) REFERENCES ticker(id),
-    FOREIGN KEY (instrument_id) REFERENCES instrument(id)
+    current_price REAL NOT NULL
+    ,FOREIGN KEY (ticker_id) REFERENCES ticker(id)
+    ,FOREIGN KEY (instrument_id) REFERENCES instrument(id)
 );

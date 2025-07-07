@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tickers
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    symbol TEXT UNIQUE NOT NULL, 
+    name TEXT NOT NULL,
+    currency TEXT NOT NULL,
+    value TEXT NOT NULL,
+    time_updated TEXT NOT NULL, -- This is the time when the ticker was last updated
+    historical_data TEXT DEFAULT NULL, -- This is the historical data for the ticker, stored as a JSON string
+);
+
 CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     symbol TEXT UNIQUE NOT NULL,

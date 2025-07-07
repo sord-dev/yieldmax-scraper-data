@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tic
     currency TEXT NOT NULL,
     value TEXT NOT NULL,
     time_updated TEXT NOT NULL, -- This is the time when the ticker was last updated
-    historical_data TEXT DEFAULT NULL, -- This is the historical data for the ticker, stored as a JSON string
+    historical_data TEXT DEFAULT NULL -- This is the historical data for the ticker, stored as a JSON string
 );
 
 CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)

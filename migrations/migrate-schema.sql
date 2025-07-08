@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tic
     name TEXT NOT NULL,
     currency TEXT NOT NULL,
     value TEXT NOT NULL,
-    time_updated TEXT NOT NULL, -- This is the time when the ticker was last updated
+    time_updated TEXT NOT NULL -- This is the time when the ticker was last updated
 );
 
 CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores historical data for tickers

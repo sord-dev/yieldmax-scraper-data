@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores histori
     FOREIGN KEY (ticker_id) REFERENCES ticker(id)
 );
 
+CREATE TABLE IF NOT EXISTS progress_entry ( -- This table stores user investing progress
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP), -- Date of the progress entry
+    positions_count INTEGER NOT NULL, -- Number of positions the user has
+    estimated_payout REAL NOT NULL, -- Estimated payout from all positions
+    total_invested REAL NOT NULL, -- Total amount invested by the user
+);
+
 CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     symbol TEXT UNIQUE NOT NULL,

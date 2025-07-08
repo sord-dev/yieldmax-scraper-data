@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tic
     name TEXT NOT NULL,
     currency TEXT NOT NULL,
     value TEXT NOT NULL,
-    time_updated TEXT NOT NULL -- This is the time when the ticker was last updated
+    time_updated TEXT NOT NULL DEFAULT datetime('now') -- Fixed: Use datetime('now') for SQLite
 );
 
 CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores historical data for tickers
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores histori
 
 CREATE TABLE IF NOT EXISTS progress_entry ( -- This table stores user investing progress
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP), -- Date of the progress entry
+    date DATETIME NOT NULL DEFAULT datetime('now'), -- Fixed: Use datetime('now') for SQLite
     positions_count INTEGER NOT NULL, -- Number of positions the user has
     estimated_payout REAL NOT NULL, -- Estimated payout from all positions
     total_invested REAL NOT NULL -- Total amount invested by the user
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETF
     instrument_ticker TEXT NOT NULL, 
     quantity REAL NOT NULL,
     estimated_payout REAL DEFAULT NULL, -- This is the estimated payout for the position
-    payout_updated_timestamp DATETIME DEFAULT NULL,
+    payout_updated_timestamp DATETIME DEFAULT datetime('now'), -- Fixed: Use datetime('now') for SQLite
     average_price REAL NOT NULL,
     current_price REAL NOT NULL,
     FOREIGN KEY (ticker_id) REFERENCES etf(id),

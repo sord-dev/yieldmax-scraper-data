@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS progress_entry (
     date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     positions_count INTEGER NOT NULL,
     estimated_payout REAL NOT NULL,
-    total_invested REAL NOT NULL
+    total_investment_value REAL NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS etf (

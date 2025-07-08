@@ -1,34 +1,34 @@
-CREATE TABLE IF NOT EXISTS ticker ( -- This table stores data about standard Tickers
+CREATE TABLE IF NOT EXISTS ticker (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     symbol TEXT UNIQUE NOT NULL, 
     name TEXT NOT NULL,
     currency TEXT NOT NULL,
     value TEXT NOT NULL,
-    time_updated TEXT NOT NULL DEFAULT datetime('now') -- Fixed: Use datetime('now') for SQLite
+    time_updated TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS ticker_historical_data ( -- This table stores historical data for tickers
+CREATE TABLE IF NOT EXISTS ticker_historical_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    ticker_id INTEGER NOT NULL, -- This is the ID of the ticker
-    symbol TEXT NOT NULL, -- This is the ticker symbol
-    date TEXT NOT NULL, -- This is the date of the historical data
-    open REAL NOT NULL, -- Opening price
-    high REAL NOT NULL, -- Highest price
-    low REAL NOT NULL, -- Lowest price
-    close REAL NOT NULL, -- Closing price
-    UNIQUE(symbol, date), -- Ensure no duplicate entries for the same symbol and date
+    ticker_id INTEGER NOT NULL,
+    symbol TEXT NOT NULL,
+    date TEXT NOT NULL,
+    open REAL NOT NULL,
+    high REAL NOT NULL,
+    low REAL NOT NULL,
+    close REAL NOT NULL,
+    UNIQUE(symbol, date),
     FOREIGN KEY (ticker_id) REFERENCES ticker(id)
 );
 
-CREATE TABLE IF NOT EXISTS progress_entry ( -- This table stores user investing progress
+CREATE TABLE IF NOT EXISTS progress_entry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date DATETIME NOT NULL DEFAULT datetime('now'), -- Fixed: Use datetime('now') for SQLite
-    positions_count INTEGER NOT NULL, -- Number of positions the user has
-    estimated_payout REAL NOT NULL, -- Estimated payout from all positions
-    total_invested REAL NOT NULL -- Total amount invested by the user
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    positions_count INTEGER NOT NULL,
+    estimated_payout REAL NOT NULL,
+    total_invested REAL NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS etf ( -- This table stores ETF metadata (from the ETF webpage)
+CREATE TABLE IF NOT EXISTS etf (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     symbol TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS position ( -- This table stores user positions in ETF
     instrument_ticker TEXT NOT NULL, 
     quantity REAL NOT NULL,
     estimated_payout REAL DEFAULT NULL, -- This is the estimated payout for the position
-    payout_updated_timestamp DATETIME DEFAULT datetime('now'), -- Fixed: Use datetime('now') for SQLite
+    payout_updated_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, -- Fixed: Use datetime('now') for SQLite
     average_price REAL NOT NULL,
     current_price REAL NOT NULL,
     FOREIGN KEY (ticker_id) REFERENCES etf(id),
